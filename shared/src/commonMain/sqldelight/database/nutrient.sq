@@ -1,0 +1,27 @@
+CREATE TABLE nutrientEntity (
+    productId INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    amount INTEGER NOT NULL,
+    unit TEXT NOT NULL,
+    percentOfDailyNeeds REAL NOT NULL,
+    FOREIGN KEY (productId) REFERENCES productEntity(id)
+);
+
+insertNutrientEntity:
+INSERT OR REPLACE
+INTO nutrientEntity(
+    productId,
+    name,
+    amount,
+    unit,
+    percentOfDailyNeeds
+) VALUES (?, ?, ?, ?, ?);
+
+getNutrientsById:
+SELECT *
+FROM nutrientEntity
+WHERE productId = :productId;
+
+deleteNutrients:
+DELETE FROM nutrientEntity
+WHERE productId = :productId;

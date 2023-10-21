@@ -1,0 +1,36 @@
+CREATE TABLE productEntity (
+    id INTEGER PRIMARY KEY NOT NULL,
+    title TEXT NOT NULL,
+    ingredientList TEXT NOT NULL,
+    aisle TEXT NOT NULL,
+    price REAL NOT NULL,
+    percentProtein REAL NOT NULL,
+    percentFat REAL NOT NULL,
+    percentCarbs REAL NOT NULL
+);
+
+insertProductEntity:
+INSERT OR REPLACE
+INTO productEntity(
+    id,
+    title,
+    ingredientList,
+    aisle,
+    price,
+    percentProtein,
+    percentFat,
+    percentCarbs
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+deleteProduct:
+DELETE FROM productEntity
+WHERE id = :id;
+
+getProductById:
+SELECT *
+FROM productEntity
+WHERE id = :id;
+
+getAllProducts:
+SELECT *
+FROM productEntity;
