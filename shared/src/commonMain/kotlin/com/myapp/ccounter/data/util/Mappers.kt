@@ -11,6 +11,7 @@ internal fun ProductRemote.toProduct(): Product {
         ingredientList = ingredientList,
         title = title,
         aisle = aisle,
+        image = image,
         nutrition = nutrition,
         price = price,
     )

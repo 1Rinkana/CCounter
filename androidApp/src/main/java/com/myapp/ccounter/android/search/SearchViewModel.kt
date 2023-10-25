@@ -21,7 +21,6 @@ class SearchViewModel(
     var uiState by mutableStateOf(SearchScreenState())
     private var searchJob: Job? = null
 
-
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
         Log.d("COROUTINE", "Cancel was stopped because of: $throwable")
     }

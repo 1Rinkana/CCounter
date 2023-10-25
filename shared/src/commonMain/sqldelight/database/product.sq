@@ -3,6 +3,7 @@ CREATE TABLE productEntity (
     title TEXT NOT NULL,
     ingredientList TEXT NOT NULL,
     aisle TEXT NOT NULL,
+    image TEXT NOT NULL,
     price REAL NOT NULL,
     percentProtein REAL NOT NULL,
     percentFat REAL NOT NULL,
@@ -16,11 +17,12 @@ INTO productEntity(
     title,
     ingredientList,
     aisle,
+    image,
     price,
     percentProtein,
     percentFat,
     percentCarbs
-) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?);
 
 deleteProduct:
 DELETE FROM productEntity

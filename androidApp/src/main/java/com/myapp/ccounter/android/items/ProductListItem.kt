@@ -41,7 +41,7 @@ fun ProductListItem(
             .clickable { onProductClick(product) },
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.secondaryContainer,
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
             contentColor = MaterialTheme.colorScheme.onBackground,
         ),
     ) {

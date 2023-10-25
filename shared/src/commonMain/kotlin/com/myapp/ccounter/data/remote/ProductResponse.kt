@@ -7,7 +7,3 @@ data class ProductsListResponse(
     val products: List<ProductsListItemRemote>
 )
 
-@Serializable
-data class ProductResponse(
-    val results: ProductRemote
-)

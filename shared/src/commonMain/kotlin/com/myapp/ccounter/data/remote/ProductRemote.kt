@@ -11,12 +11,15 @@ data class ProductsListItemRemote(
     val imageUrl: String,
 )
 
+
+
 @Serializable
 data class ProductRemote(
     val id: Long,
     val title: String,
     val ingredientList: String,
     val aisle: String,
+    val image: String,
     val nutrition: Nutrition,
     val price: Double,
 )
@@ -30,7 +33,7 @@ data class Nutrition(
 @Serializable
 data class Nutrient(
     val name: String,
-    val amount: Long,
+    val amount: Double,
     val unit: String,
     val percentOfDailyNeeds: Double,
 )

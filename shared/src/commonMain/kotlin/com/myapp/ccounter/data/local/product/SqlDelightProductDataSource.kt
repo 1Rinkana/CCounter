@@ -11,6 +11,7 @@ class SqlDelightProductDataSource(db: ProductDatabase): LocalDataSource {
         productQueries.insertProductEntity(
             id = product.id,
             aisle = product.aisle,
+            image = product.image,
             ingredientList = product.ingredientList,
             percentCarbs = product.nutrition.caloricBreakdown.percentCarbs,
             percentFat = product.nutrition.caloricBreakdown.percentFat,
@@ -20,7 +21,7 @@ class SqlDelightProductDataSource(db: ProductDatabase): LocalDataSource {
         )
 
         product.nutrition.nutrients.forEach { nutrient ->
-            product.id?.let {
+            product.id.let {
                 nutrientQueries.insertNutrientEntity(
                     productId = it,
                     name = nutrient.name,

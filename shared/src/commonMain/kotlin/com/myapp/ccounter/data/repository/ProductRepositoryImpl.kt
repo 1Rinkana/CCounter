@@ -17,6 +17,6 @@ internal class ProductRepositoryImpl(
     }
 
     override suspend fun getProduct(productId: Int): Product {
-        return remoteDataSource.getProduct(productId = productId).results.toProduct()
+        return remoteDataSource.getProduct(productId = productId).toProduct()
     }
 }

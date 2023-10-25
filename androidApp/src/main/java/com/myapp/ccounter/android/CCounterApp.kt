@@ -28,8 +28,6 @@ fun CCounterApp() {
     val navController = rememberNavController()
     val snackbarHostState = remember { SnackbarHostState() }
 
-    val backStackEntry by navController.currentBackStackEntryAsState()
-
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
 
@@ -50,17 +48,28 @@ fun CCounterApp() {
                         navController.navigate(
                             "${Detail.route}/${it.id}"
                         )
-                    }
+                    },
                 )
             }
 
             composable(Detail.routeWithArgs, arguments = Detail.arguments){
-                val productId = it.arguments?.getInt("id") ?: 0
+                val productId = it.arguments?.getInt("productId") ?: 0
                 val detailViewModel: DetailViewModel = koinViewModel(
                     parameters = { parametersOf(productId) }
                 )
 
-                DetailScreen(uiState = detailViewModel.uiState)
+                DetailScreen(
+                    uiState = detailViewModel.uiState,
+                    onBackPressed = {
+                        navController.popBackStack()
+                    },
+                    saveProduct = {
+                        detailViewModel.saveProduct()
+                    },
+                    deleteProduct = {
+                        detailViewModel.deleteProduct()
+                    }
+                )
             }
         }
     }

@@ -43,7 +43,7 @@ internal class ProductService: KtorApi() {
         }
     }
 
-    suspend fun getProduct(productId: Int): ProductResponse {
+    suspend fun getProduct(productId: Int): ProductRemote {
         return HttpClient {
             expectSuccess = true
             install(ContentNegotiation) {

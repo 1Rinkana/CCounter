@@ -13,6 +13,7 @@ fun ProductEntity.toProduct(nutrients: List<Nutrient>): Product {
         ingredientList = ingredientList,
         title = title,
         aisle = aisle,
+        image = image,
         nutrition = Nutrition(
             nutrients = nutrients,
             caloricBreakdown = CaloricBreakdown(
