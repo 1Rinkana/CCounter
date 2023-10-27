@@ -1,4 +1,4 @@
-package com.myapp.ccounter.android.items
+package com.myapp.ccounter.android.ui.items
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box

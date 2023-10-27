@@ -12,10 +12,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.myapp.ccounter.android.common.Detail
 import com.myapp.ccounter.android.common.Search
-import com.myapp.ccounter.android.detail.DetailScreen
-import com.myapp.ccounter.android.detail.DetailViewModel
-import com.myapp.ccounter.android.search.SearchScreen
-import com.myapp.ccounter.android.search.SearchViewModel
+import com.myapp.ccounter.android.ui.screens.detail.DetailScreen
+import com.myapp.ccounter.android.ui.screens.detail.DetailViewModel
+import com.myapp.ccounter.android.ui.screens.search.SearchScreen
+import com.myapp.ccounter.android.ui.screens.search.SearchViewModel
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 

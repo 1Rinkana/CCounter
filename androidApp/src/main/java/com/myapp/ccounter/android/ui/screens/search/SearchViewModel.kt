@@ -1,4 +1,4 @@
-package com.myapp.ccounter.android.search
+package com.myapp.ccounter.android.ui.screens.search
 
 import android.util.Log
 import androidx.compose.runtime.MutableState

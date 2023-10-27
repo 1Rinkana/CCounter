@@ -1,4 +1,4 @@
-package com.myapp.ccounter.android.search
+package com.myapp.ccounter.android.ui.screens.search
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Arrangement
@@ -19,8 +19,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.myapp.ccounter.android.items.LoadingProductListItem
-import com.myapp.ccounter.android.items.ProductListItem
+import com.myapp.ccounter.android.ui.items.LoadingProductListItem
+import com.myapp.ccounter.android.ui.items.ProductListItem
 import com.myapp.ccounter.domain.model.ProductItem
 
 @OptIn(ExperimentalAnimationApi::class, ExperimentalComposeUiApi::class)

@@ -2,8 +2,8 @@ package com.myapp.ccounter.android.di
 
 import android.app.Application
 import app.cash.sqldelight.db.SqlDriver
-import com.myapp.ccounter.android.detail.DetailViewModel
-import com.myapp.ccounter.android.search.SearchViewModel
+import com.myapp.ccounter.android.ui.screens.detail.DetailViewModel
+import com.myapp.ccounter.android.ui.screens.search.SearchViewModel
 import com.myapp.ccounter.data.local.DatabaseDriverFactory
 import com.myapp.ccounter.data.local.LocalDataSource
 import com.myapp.ccounter.data.local.product.SqlDelightProductDataSource

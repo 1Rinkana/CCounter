@@ -1,4 +1,4 @@
-package com.myapp.ccounter.android.detail
+package com.myapp.ccounter.android.ui.screens.detail
 
 import android.util.Log
 import androidx.compose.runtime.getValue

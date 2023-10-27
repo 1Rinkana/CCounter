@@ -1,4 +1,4 @@
-package com.myapp.ccounter.android.saved
+package com.myapp.ccounter.android.ui.screens.saved
 
 import com.myapp.ccounter.domain.model.Product
 
