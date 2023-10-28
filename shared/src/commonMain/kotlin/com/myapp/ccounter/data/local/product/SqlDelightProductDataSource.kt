@@ -7,6 +7,7 @@ import com.myapp.ccounter.domain.model.Product
 class SqlDelightProductDataSource(db: ProductDatabase): LocalDataSource {
     private val productQueries = db.productQueries
     private val nutrientQueries = db.nutrientQueries
+
     override suspend fun insertProduct(product: Product) {
         productQueries.insertProductEntity(
             id = product.id,
@@ -62,5 +63,19 @@ class SqlDelightProductDataSource(db: ProductDatabase): LocalDataSource {
     override suspend fun deleteProductById(id: Long) {
         productQueries.deleteProduct(id)
         nutrientQueries.deleteNutrients(id)
+    }
+
+    override suspend fun getProductsByTitle(title: String): List<Product>? {
+        return productQueries
+            .getProductsByTitle(title)
+            .executeAsList()
+            .map { productEntity ->
+                productEntity.toProduct(
+                    nutrientQueries
+                        .getNutrientsById(productEntity.id)
+                        .executeAsList()
+                        .map { nutrientEntity ->  nutrientEntity.toNutrient() }
+                )
+            }
     }
 }

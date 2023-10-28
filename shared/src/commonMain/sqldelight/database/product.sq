@@ -33,6 +33,11 @@ SELECT *
 FROM productEntity
 WHERE id = :id;
 
+getProductsByTitle:
+SELECT *
+FROM productEntity
+WHERE title = :title;
+
 getAllProducts:
 SELECT *
 FROM productEntity;

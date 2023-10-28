@@ -36,4 +36,10 @@ object Saved: Destination {
         get() = route
 }
 
-val productDestination = listOf(Search, Detail, Saved)
+object Main: Destination {
+    override val route: String
+        get() = "main"
+    override val routeWithArgs: String
+        get() = route
+
+}

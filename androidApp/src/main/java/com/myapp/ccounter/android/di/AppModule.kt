@@ -3,6 +3,7 @@ package com.myapp.ccounter.android.di
 import android.app.Application
 import app.cash.sqldelight.db.SqlDriver
 import com.myapp.ccounter.android.ui.screens.detail.DetailViewModel
+import com.myapp.ccounter.android.ui.screens.saved.SavedProductsViewModel
 import com.myapp.ccounter.android.ui.screens.search.SearchViewModel
 import com.myapp.ccounter.data.local.DatabaseDriverFactory
 import com.myapp.ccounter.data.local.LocalDataSource
@@ -27,6 +28,7 @@ val appModule = module {
             productId = params.get()
         )
     }
+    viewModel { SavedProductsViewModel(get()) }
 }
 
 suspend fun provideSqlDriver(app: Application): SqlDriver {

@@ -38,7 +38,8 @@ class DetailViewModel(
             uiState = uiState.copy(loading = true)
 
             uiState = try {
-                val product = getProductUseCase(productId = productId)
+                val product = productDataSource.getProductById(id = productId.toLong())
+                    ?: getProductUseCase(productId = productId)
                 delay(1000)
                 uiState.copy(
                     loading = false,
@@ -79,7 +80,7 @@ class DetailViewModel(
             } catch (error: Throwable){
                 uiState.copy(
                     hasProductBeenSaved = true,
-                    errorMessage = "Could not save the product"
+                    errorMessage = "Could not delete the product"
                 )
             }
         }

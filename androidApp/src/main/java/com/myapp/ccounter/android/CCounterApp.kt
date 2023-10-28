@@ -1,72 +1,61 @@
 package com.myapp.ccounter.android
 
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarHost
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.myapp.ccounter.android.common.Detail
-import com.myapp.ccounter.android.common.Search
+import com.myapp.ccounter.android.common.Main
 import com.myapp.ccounter.android.ui.screens.detail.DetailScreen
 import com.myapp.ccounter.android.ui.screens.detail.DetailViewModel
-import com.myapp.ccounter.android.ui.screens.search.SearchScreen
-import com.myapp.ccounter.android.ui.screens.search.SearchViewModel
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
 @Composable
 fun CCounterApp() {
-    val navController = rememberNavController()
-    val snackbarHostState = remember { SnackbarHostState() }
+    val navHostRoot = rememberNavController()
 
-    Scaffold(
-        snackbarHost = { SnackbarHost(snackbarHostState) },
+    val systemUiController = rememberSystemUiController()
 
-    ) {innerPaddings ->
-        NavHost(
-            navController = navController,
-            modifier = Modifier.padding(innerPaddings),
-            startDestination = Search.routeWithArgs
-        ){
-            composable(Search.routeWithArgs){
-                val searchViewModel: SearchViewModel = koinViewModel()
-                SearchScreen(
-                    uiState = searchViewModel.uiState,
-                    searchForProduct = {
-                        searchViewModel.searchForProducts()
-                    },
-                    navigateToDetail = {
-                        navController.navigate(
-                            "${Detail.route}/${it.id}"
-                        )
-                    },
-                )
-            }
+    NavHost(
+        navController = navHostRoot,
+        modifier = Modifier,
+        startDestination = Main.routeWithArgs
+    ) {
 
-            composable(Detail.routeWithArgs, arguments = Detail.arguments){
-                val productId = it.arguments?.getInt("productId") ?: 0
-                val detailViewModel: DetailViewModel = koinViewModel(
-                    parameters = { parametersOf(productId) }
-                )
+        composable(Main.route) {
+            MainScreen(navHostRoot)
+        }
 
-                DetailScreen(
-                    uiState = detailViewModel.uiState,
-                    onBackPressed = {
-                        navController.popBackStack()
-                    },
-                    saveProduct = {
-                        detailViewModel.saveProduct()
-                    },
-                    deleteProduct = {
-                        detailViewModel.deleteProduct()
-                    }
-                )
-            }
+        composable(Detail.routeWithArgs, arguments = Detail.arguments) {
+            val productId = it.arguments?.getInt("productId") ?: 0
+            val detailViewModel: DetailViewModel = koinViewModel(
+                parameters = { parametersOf(productId) }
+            )
+            systemUiController.setNavigationBarColor(Color.Transparent)
+
+            DetailScreen(
+                uiState = detailViewModel.uiState,
+                onBackPressed = {
+                    navHostRoot.popBackStack()
+                },
+                saveProduct = {
+                    detailViewModel.saveProduct()
+                },
+                deleteProduct = {
+                    detailViewModel.deleteProduct()
+                }
+            )
         }
     }
 }
+
+data class BottomNavigationItem(
+    val title: String,
+    val selectedIcon: ImageVector,
+    val unselectedIcon: ImageVector,
+)

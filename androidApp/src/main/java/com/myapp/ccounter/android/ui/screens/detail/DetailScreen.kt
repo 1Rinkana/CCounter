@@ -1,5 +1,6 @@
 package com.myapp.ccounter.android.ui.screens.detail
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -33,61 +34,59 @@ fun DetailScreen(
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
-    Scaffold(
+    Column(
         modifier = modifier
-            .nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            LargeTopAppBar(
-                title = {
-                    Text(
-                        text = "Description",
+            .nestedScroll(scrollBehavior.nestedScrollConnection)
+    ) {
+        LargeTopAppBar(
+            title = {
+                Text(
+                    text = "Description",
+                    modifier = Modifier,
+                    color = MaterialTheme.colorScheme.onBackground,
+                )
+            },
+            modifier = Modifier,
+            navigationIcon = {
+                IconButton(
+                    onClick = { onBackPressed() },
+                    modifier = Modifier,
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = "Go back",
                         modifier = Modifier,
-                        color = MaterialTheme.colorScheme.onBackground,
                     )
-                },
-                modifier = Modifier,
-                navigationIcon = {
-                    IconButton(
-                        onClick = { onBackPressed() },
-                        modifier = Modifier,
-                    ) {
-                        Icon(
-                            imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "Go back",
-                            modifier = Modifier,
-                        )
-                    }
-                },
-                actions = {
-                    IconButton(
-                        onClick = {
-                            when (uiState.hasProductBeenSaved) {
-                                false -> saveProduct()
-                                else -> deleteProduct()
-                            }
+                }
+            },
+            actions = {
+                IconButton(
+                    onClick = {
+                        when (uiState.hasProductBeenSaved) {
+                            false -> saveProduct()
+                            else -> deleteProduct()
                         }
-                    ) {
-                        Icon(
-                            imageVector = when (uiState.hasProductBeenSaved) {
-                                false -> Icons.Filled.Add
-                                else -> Icons.Outlined.Delete
-                            }, contentDescription = null
-                        )
                     }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background,
-                    scrolledContainerColor = MaterialTheme.colorScheme.background,
-                ),
-                scrollBehavior = scrollBehavior,
-            )
-        },
-    ) { paddingValues ->
+                ) {
+                    Icon(
+                        imageVector = when (uiState.hasProductBeenSaved) {
+                            false -> Icons.Filled.Add
+                            else -> Icons.Outlined.Delete
+                        }, contentDescription = null
+                    )
+                }
+            },
+            colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = MaterialTheme.colorScheme.background,
+                scrolledContainerColor = MaterialTheme.colorScheme.background,
+            ),
+            scrollBehavior = scrollBehavior,
+        )
+
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 16.dp, vertical = 8.dp)
-                .padding(paddingValues)
+                .padding(horizontal = 16.dp)
         ) {
             item {
                 when (uiState.loading) {

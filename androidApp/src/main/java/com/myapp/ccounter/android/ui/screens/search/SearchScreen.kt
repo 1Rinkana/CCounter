@@ -33,50 +33,46 @@ fun SearchScreen(
 ) {
     var searchText by uiState.request
 
-    Scaffold(
-        modifier = modifier,
-    ) { paddingValues ->
-        val gridState = rememberLazyGridState()
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                SearchBar(
-                    searchText = searchText,
-                    placeholderText = "Enter product",
-                    onSearchTextChanged = { searchText = it },
-                    onDoneClick = { searchForProduct() },
-                )
-            }
+    val gridState = rememberLazyGridState()
 
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
-                modifier = Modifier,
-                state = gridState,
-                contentPadding = PaddingValues(16.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ){
-                when (uiState.loading) {
-                    true -> {
-                        items(8) {
-                            LoadingProductListItem()
-                        }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            SearchBar(
+                searchText = searchText,
+                placeholderText = "Enter product",
+                onSearchTextChanged = { searchText = it },
+                onDoneClick = { searchForProduct() },
+            )
+        }
+
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+            modifier = Modifier,
+            state = gridState,
+            contentPadding = PaddingValues(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ){
+            when (uiState.loading) {
+                true -> {
+                    items(8) {
+                        LoadingProductListItem()
                     }
-                    else -> {
-                        itemsIndexed(
-                            uiState.products,
-                            key = { _, product -> product.id },
-                        ) {_, product ->
-                            ProductListItem(
-                                product = product,
-                                onProductClick = { navigateToDetail(product) },
-                            )
-                        }
+                }
+                else -> {
+                    itemsIndexed(
+                        uiState.products,
+                        key = { _, product -> product.id },
+                    ) {_, product ->
+                        ProductListItem(
+                            product = product,
+                            onProductClick = { navigateToDetail(product) },
+                        )
                     }
                 }
             }
