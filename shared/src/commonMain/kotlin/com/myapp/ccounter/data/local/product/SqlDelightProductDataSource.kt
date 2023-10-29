@@ -65,7 +65,7 @@ class SqlDelightProductDataSource(db: ProductDatabase): LocalDataSource {
         nutrientQueries.deleteNutrients(id)
     }
 
-    override suspend fun getProductsByTitle(title: String): List<Product>? {
+    override suspend fun getProductsByTitle(title: String): List<Product> {
         return productQueries
             .getProductsByTitle(title)
             .executeAsList()

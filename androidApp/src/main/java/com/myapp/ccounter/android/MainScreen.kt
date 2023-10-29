@@ -15,11 +15,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -29,19 +30,15 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.myapp.ccounter.android.common.Detail
 import com.myapp.ccounter.android.common.Saved
 import com.myapp.ccounter.android.common.Search
-import com.myapp.ccounter.android.ui.screens.detail.DetailScreen
-import com.myapp.ccounter.android.ui.screens.detail.DetailViewModel
 import com.myapp.ccounter.android.ui.screens.saved.SavedProductsScreen
 import com.myapp.ccounter.android.ui.screens.saved.SavedProductsViewModel
 import com.myapp.ccounter.android.ui.screens.search.SearchScreen
 import com.myapp.ccounter.android.ui.screens.search.SearchViewModel
-import com.myapp.ccounter.domain.model.ProductItem
 import org.koin.androidx.compose.koinViewModel
-import org.koin.core.parameter.parametersOf
 
 @Composable
 fun MainScreen(
-    navHostRoot: NavHostController
+    navHostRoot: NavHostController,
 ) {
     val systemUiController = rememberSystemUiController()
 
@@ -61,7 +58,7 @@ fun MainScreen(
     val navHostMain = rememberNavController()
 
     var selectedScreenIndex by rememberSaveable {
-        mutableStateOf<Int?>(0)
+        mutableIntStateOf(0)
     }
 
     Scaffold(
@@ -130,3 +127,9 @@ fun MainScreen(
         }
     }
 }
+
+data class BottomNavigationItem(
+    val title: String,
+    val selectedIcon: ImageVector,
+    val unselectedIcon: ImageVector,
+)

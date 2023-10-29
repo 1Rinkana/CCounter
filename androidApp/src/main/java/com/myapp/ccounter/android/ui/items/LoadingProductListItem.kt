@@ -35,7 +35,8 @@ fun LoadingProductListItem(modifier: Modifier = Modifier) {
             ),
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f),
+            contentColor = MaterialTheme.colorScheme.onBackground,
         ),
     ) {
         Column(

@@ -34,7 +34,7 @@ fun SearchScreen(
     val gridState = rememberLazyGridState()
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
     ) {
         Row(

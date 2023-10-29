@@ -38,8 +38,11 @@ class DetailViewModel(
             uiState = uiState.copy(loading = true)
 
             uiState = try {
-                val product = productDataSource.getProductById(id = productId.toLong())
-                    ?: getProductUseCase(productId = productId)
+                var product = productDataSource.getProductById(id = productId.toLong())
+
+                if (product != null) { uiState = uiState.copy(hasProductBeenSaved = true)
+                } else { product = getProductUseCase(productId = productId) }
+
                 delay(1000)
                 uiState.copy(
                     loading = false,
