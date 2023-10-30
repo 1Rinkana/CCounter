@@ -1,9 +1,3 @@
-buildscript {
-    dependencies {
-        classpath("app.cash.sqldelight:gradle-plugin:2.0.0")
-    }
-}
-
 plugins {
     //trick: for the same plugin versions in all sub-modules
     alias(libs.plugins.androidApplication).apply(false)

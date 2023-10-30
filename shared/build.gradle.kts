@@ -2,12 +2,11 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     kotlin("plugin.serialization") version "1.9.0"
-    id("app.cash.sqldelight")
+    id("app.cash.sqldelight") version "2.0.0"
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
-    targetHierarchy.default()
 
     androidTarget {
         compilations.all {
@@ -44,7 +43,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion")
-                implementation("app.cash.sqldelight:sqlite-driver:$sqlDelightVersion")
+
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
 
                 implementation("io.github.aakira:napier:2.6.1")
@@ -73,11 +72,10 @@ kotlin {
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
 
-        val iosMain by getting {
+        val iosMain by creating {
             dependencies{
                 implementation("io.ktor:ktor-client-darwin:$ktorVersion")
                 implementation("app.cash.sqldelight:native-driver:$sqlDelightVersion")
-
             }
 
             dependsOn(commonMain)
@@ -89,7 +87,10 @@ kotlin {
         val iosX64Test by getting
         val iosArm64Test by getting
         val iosSimulatorArm64Test by getting
-        val iosTest by getting {
+        val iosTest by creating {
+            dependencies {
+                implementation("app.cash.sqldelight:native-driver:$sqlDelightVersion")
+            }
             dependsOn(commonTest)
             iosX64Test.dependsOn(this)
             iosArm64Test.dependsOn(this)
