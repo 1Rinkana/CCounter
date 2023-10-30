@@ -14,7 +14,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
@@ -28,7 +29,17 @@ fun SavedProductsScreen(
     modifier: Modifier = Modifier,
     uiState: SavedProductsScreenState,
     navigateToDetail: (Long) -> Unit,
+    refreshProductList: () -> Unit,
 ) {
+    val myFunction = rememberUpdatedState {
+        refreshProductList()
+    }
+
+    DisposableEffect(Unit) {
+        myFunction.value()
+        onDispose { }
+    }
+
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val gridState = rememberLazyGridState()
 

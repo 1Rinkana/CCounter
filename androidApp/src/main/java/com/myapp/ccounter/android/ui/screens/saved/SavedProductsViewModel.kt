@@ -19,7 +19,7 @@ class SavedProductsViewModel(
         getAllSavedProducts()
     }
 
-    private fun getAllSavedProducts() {
+    fun getAllSavedProducts() {
         viewModelScope.launch {
             uiState = uiState.copy(loading = true)
 
