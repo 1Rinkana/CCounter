@@ -6,7 +6,7 @@ extension SearchScreen {
         private let getProductsListUseCase = GetProductsListUseCase.init()
         
         @Published private(set) var isLoading: Bool = false
-        @Published var request = ""
+        @Published var request = "pizza"
         @Published private(set) var products:[ProductItem] = []
         @Published private(set) var loadFinished: Bool = false
         
@@ -17,7 +17,7 @@ extension SearchScreen {
             }
             
             do {
-                let products = try await getProductsListUseCase.invoke(productsName: request)
+                let products = try await getProductsListUseCase.invoke(productsName: "pizza")
                 isLoading = false
                 loadFinished = products.isEmpty
                 

@@ -8,6 +8,7 @@ import org.koin.core.component.inject
 class GetProductsListUseCase: KoinComponent {
     private val repository: ProductRepository by inject()
 
+    @Throws(Exception::class)
     suspend operator fun invoke(productsName: String): List<ProductItem> {
         return repository.getProductsList(productsName = productsName)
     }

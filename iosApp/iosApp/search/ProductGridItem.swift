@@ -9,7 +9,6 @@
 import SwiftUI
 import shared
 
-@available(iOS 15.0, *)
 struct ProductGridItem: View {
     let product: ProductItem
     
@@ -19,7 +18,9 @@ struct ProductGridItem: View {
                 AsyncImage(
                     url: URL(string: product.imageUrl)
                 ) { image in
-                    image.resizable()
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
                 } placeholder: {
                     Color.gray
                 }
@@ -36,6 +37,6 @@ struct ProductGridItem: View {
                 .fontWeight(.bold)
                 .lineLimit(1)
         }
-        .frame(maxWidth: .infinity, maxHeight: 260)
+        .frame(maxWidth: .infinity, maxHeight: 220)
     }
 }

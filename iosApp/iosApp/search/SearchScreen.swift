@@ -3,7 +3,7 @@ import shared
 
 struct SearchScreen: View {
     @StateObject var viewModel = SearchScreenViewModel()
-        
+    
     let gridColumns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 16), count: 2)
     
     var body: some View {
@@ -12,10 +12,17 @@ struct SearchScreen: View {
             ScrollView{
                 LazyVGrid(columns: gridColumns, spacing: 16){
                     
-                    ForEach(viewModel.products, id: \.id) { product in
+                    ForEach(viewModel.products, id: \.id){ product in
                         
-                        ProductGridItem(product: product)
-                            .buttonStyle(PlainButtonStyle())
+                        NavigationLink(value: product){
+                            ProductGridItem(product: product)
+                                .task {
+                                    if product == viewModel.products.last && !viewModel.isLoading && !viewModel.loadFinished {
+                                        await viewModel.loadProducts()
+                                    }
+                                }
+                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
                     
                     if viewModel.isLoading {
@@ -24,19 +31,13 @@ struct SearchScreen: View {
                     
                 }
                 .padding(.horizontal, 12)
-                .navigationDestination(for: ProductItem.self) { product in
-                    DetailScreen(productId: product.id)
-                }
+                
             }
+            .navigationTitle("Products")
+            
         }
         .task {
-            await viewModel.loadMovies()
+            await viewModel.loadProducts()
         }
-	}
-}
-
-struct SearchScreen_Previews: PreviewProvider {
-	static var previews: some View {
-		SearchScreen()
-	}
+    }
 }
