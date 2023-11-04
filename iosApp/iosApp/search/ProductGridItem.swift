@@ -1,11 +1,3 @@
-//
-//  SwiftUIView.swift
-//  iosApp
-//
-//  Created by Максим Цыганий on 30.10.23.
-//  Copyright © 2023 orgName. All rights reserved.
-//
-
 import SwiftUI
 import shared
 
@@ -13,30 +5,31 @@ struct ProductGridItem: View {
     let product: ProductItem
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8){
-            ZStack{
-                AsyncImage(
-                    url: URL(string: product.imageUrl)
-                ) { image in
+        VStack(alignment: .leading, spacing: 6) {
+            ZStack {
+                Color(.white)
+                
+                AsyncImage(url: URL(string: product.imageUrl)) { image in
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                 } placeholder: {
-                    Color.gray
+                    Color.white
                 }
-                
             }
-            .frame(
-                maxWidth: .infinity,
-                idealHeight: .infinity
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.gray, lineWidth: 1)
             )
-            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .frame(height: 175)
+            .clipShape(RoundedRectangle(cornerRadius: 16.0))
             
             Text(product.title)
-                .font(.title3)
-                .fontWeight(.bold)
+                .fontWeight(.regular)
                 .lineLimit(1)
+                .padding(.bottom, 4)
+                .padding(.vertical, 6)
         }
-        .frame(maxWidth: .infinity, maxHeight: 220)
+        .clipShape(RoundedRectangle(cornerRadius: 16.0))
     }
 }

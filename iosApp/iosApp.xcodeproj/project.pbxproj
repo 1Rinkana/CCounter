@@ -11,6 +11,7 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* SearchScreen.swift */; };
+		DE6CF01B2AF5A1C300C44F0D /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6CF01A2AF5A1C300C44F0D /* SearchBar.swift */; };
 		DE84D8BD2AEFD34500AE2E89 /* SearchScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE84D8BC2AEFD34500AE2E89 /* SearchScreenViewModel.swift */; };
 		DEC28B962AF00C5F00F46D99 /* ProductGridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC28B952AF00C5E00F46D99 /* ProductGridItem.swift */; };
 /* End PBXBuildFile section */
@@ -35,6 +36,7 @@
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE6CF01A2AF5A1C300C44F0D /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		DE84D8BC2AEFD34500AE2E89 /* SearchScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenViewModel.swift; sourceTree = "<group>"; };
 		DEC28B952AF00C5E00F46D99 /* ProductGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGridItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,6 +63,7 @@
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
+				DE6CF0192AF5A19200C44F0D /* UI */,
 				7555FF7D242A565900829871 /* iosApp */,
 				7555FF7C242A565900829871 /* Products */,
 				7555FFB0242A642200829871 /* Frameworks */,
@@ -78,6 +81,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				DE6CF01C2AF6B82300C44F0D /* detail */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				DE84D8BB2AEFD29D00AE2E89 /* search */,
 				7555FF8C242A565B00829871 /* Info.plist */,
@@ -92,6 +96,21 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE6CF0192AF5A19200C44F0D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				DE6CF01A2AF5A1C300C44F0D /* SearchBar.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		DE6CF01C2AF6B82300C44F0D /* detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = detail;
 			sourceTree = "<group>";
 		};
 		DE84D8BB2AEFD29D00AE2E89 /* search */ = {
@@ -198,6 +217,7 @@
 			files = (
 				DE84D8BD2AEFD34500AE2E89 /* SearchScreenViewModel.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				DE6CF01B2AF5A1C300C44F0D /* SearchBar.swift in Sources */,
 				DEC28B962AF00C5F00F46D99 /* ProductGridItem.swift in Sources */,
 				7555FF83242A565900829871 /* SearchScreen.swift in Sources */,
 			);

@@ -16,8 +16,11 @@ extension SearchScreen {
                 return
             }
             
+            isLoading = true
+            
             do {
-                let products = try await getProductsListUseCase.invoke(productsName: "pizza")
+                let products = try await getProductsListUseCase.invoke(productsName: request)
+                try await Task.sleep(until: .now + .seconds(1))
                 isLoading = false
                 loadFinished = products.isEmpty
                 
